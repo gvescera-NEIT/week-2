@@ -1,0 +1,110 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="styles.css" />
+
+</head>
+
+<body>
+<!-- This is the form -->
+<form name = "myform" id="email_form">
+
+<h2 style="color: blue; text-align: center">Send us an email!</h2>
+<pre style="color: #54A4FF; font-size: 20px">
+
+First Name:<input id="firstname" type="text" name="firstname" /><span class="error" id="err_firstname" style="color:red"></span>
+
+Last Name: <input id="lastname" type="text" name="lastname" /><span class="error" id="err_lastname" style="color:red"></span>
+
+E-mail:     <input id="email" type="text" name="email" placeholder="example@yahoo.com"/><span class="error" id="err_email" style="color:red"></span>
+
+Message:   
+<textarea id="messagebox" rows="4" cols="50"></textarea><span class="error" id="err_messagebox" style="color:red"></span>
+
+<input type="button" value="Submit" onClick="checkform();" />
+</pre>
+
+</form>
+
+<div id="confirmation" align=center>
+
+	<h1>
+	Confirmation
+	</h1>
+
+	<div id="con_results">
+	</div>
+
+</div>
+<!-- This is the script -->
+<script>
+
+	function checkform()
+	{
+		var firstname = document.getElementById("firstname");
+		var lastname = document.getElementById("lastname");
+		var email = document.getElementById("email");
+		var messagebox = document.getElementById("messagebox");
+		var err_firstname = document.getElementById("err_firstname");
+		var err_lastname = document.getElementById("err_lastname");
+		var err_email = document.getElementById("err_email");
+		var err_messagebox = document.getElementById("err_messagebox");
+	
+		if (firstname.value.length == 0)
+		{
+			document.getElementById("firstname").className="novalue";
+			err_firstname.innerHTML = "*";
+		}
+		
+		if (lastname.value.length == 0)
+		{
+			document.getElementById("lastname").className="novalue";
+			err_lastname.innerHTML = "*";
+		}
+		
+		if (email.value.length == 0)
+		{
+			document.getElementById("email").className="novalue";
+			err_email.innerHTML = "*";
+		}
+		else if (email.value.indexOf("@") == -1 || email.value.indexOf(".") == -1)
+		{
+			document.getElementById("email").className="novalue";
+			err_email.innerHTML = "*";
+			alert("E-mail must contain an \"@\" and a \".\"");
+		}
+		
+		if (messagebox.value.length == 0)
+		{
+			document.getElementById("messagebox").className="novalue";
+			err_messagebox.innerHTML = "*";
+		}
+		else if (messagebox.value.length > 150)
+		{
+			document.getElementById("messagebox").className="novalue";
+			err_messagebox.innerHTML = "*";
+			alert("Max message length is 150 characters")
+		}
+		
+		var firstname_results = "";
+		var lastname_results = "";
+		var email_results = "";
+		var message_results = "";
+		var confirmation_div = document.getElementById("confirmation");
+		var con_results = document.getElementById("con_results");
+		
+		firstname_results += "First Name: " + firstname.value;
+		lastname_results += "Last Name: " + lastname.value;
+		email_results += "E-mail: " + email.value;
+		message_results += "Message: " + messagebox.value;
+		
+		document.getElementById("email_form").style.display = "none";
+		
+		confirmation_div.style.display = "block";		
+		con_results.innerHTML = "<ul><li>" + firstname_results + "</li>" + "<li>" + lastname_results + "</li>" + "<li>" + email_results + "</li>" + "<li>" + message_results + "</li>" + "</ul>";
+	}
+</script>
+</body>
+
+</html>
