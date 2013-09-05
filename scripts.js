@@ -1,5 +1,5 @@
 function checkform()
-  {
+	{
 		// Variables are declared
 		var firstname = document.getElementById("firstname");
 		var lastname = document.getElementById("lastname");
@@ -35,8 +35,7 @@ function checkform()
 		else if (email.value.indexOf("@") == -1 || email.value.indexOf(".") == -1)
 		{
 			document.getElementById("email").className="novalue";
-			err_email.innerHTML = "*";
-			alert("E-mail must contain an \"@\" and a \".\"");
+			err_email.innerHTML = "* E-mail must contain an \"@\" and a \".\"";
 			has_errors = true;
 		}
 		
@@ -49,8 +48,7 @@ function checkform()
 		else if (messagebox.value.length > 150)
 		{
 			document.getElementById("messagebox").className="novalue";
-			err_messagebox.innerHTML = "*";
-			alert("Max message length is 150 characters");
+			err_messagebox.innerHTML = "* Max message length is 150 characters";
 			has_errors = true;
 		}
 		
